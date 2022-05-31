@@ -7,6 +7,9 @@ import {
   Param,
   Query,
   Body,
+  HttpException,
+  HttpStatus,
+  ForbiddenException,
 } from '@nestjs/common';
 import { CreateCatDto, ListAllEntities, UpdateCatDto } from './dtos';
 import { CatsService } from './cats.service';
@@ -23,7 +26,7 @@ export class CatsController {
 
   @Get()
   async findAll(): Promise<Cat[]> {
-    return this.catsService.findAll();
+    throw new ForbiddenException();
   }
 
   @Get(':id')
